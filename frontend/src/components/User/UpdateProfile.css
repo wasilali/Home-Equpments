@@ -1,0 +1,106 @@
+.updateProfileHeading {
+    text-align: center;
+    color: white;
+    font: 400 2.3vmax "Roboto";
+    padding: 1.3vmax;
+    border-bottom: 1px solid gray;
+    width: 50%;
+    margin: auto;
+  }
+  #updateProfileImage > img {
+    width: 20vmax;
+    border-radius: 100%;
+    margin: 2vmax 0;
+  }
+  #updateProfileImage > input {
+    display: flex;
+    padding: 0%;
+  }
+  
+  #updateProfileImage > input::file-selector-button {
+    cursor: pointer;
+    width: 100%;
+    z-index: 2;
+    height: 5vh;
+    border: none;
+   padding-left: 5vmax;
+    font: 400 0.8vmax cursive;
+    transition: all 0.5s;
+    padding: 0 1vmax;
+    color: white;
+    background-color: yellow;
+    
+  }
+
+
+  .form{
+    display: flex;
+  justify-content: space-evenly ;
+  text-align: center;
+  margin-right: 15vmax;
+  }
+  .updateProfileName>input,
+  .updateProfileEmail>input {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 200%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 300 0.9vmax cursive;
+    outline: none;
+    color: white;
+    margin-top: 6vmax;
+    background-color: tomato;
+  }
+  .updateProfileEmail >svg,
+  .updateProfileName > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: white;
+    padding-top: 7vmax;
+   
+  }
+  .updateProfileBtn {
+    border: none;
+    background-color: yellow;
+    color: white;
+    font: 300 0.9vmax "Roboto";
+    width: 100%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+    margin-top: 4.8vmax;
+  }
+  
+  .updateProfileBtn:hover {
+    background-color: rgb(179, 66, 46);
+  }
+
+  @media screen and (max-width: 600px) {
+  .updateProfileContainer{
+    flex-direction: column;
+  }
+
+  .updateProfileName>input {
+    margin-top: 23rem;
+    margin-left: -10rem;
+    width: 18rem;
+    height: 3rem;
+
+}
+.updateProfileEmail>input{
+  margin-left: -10rem;
+  width: 18rem;
+  height: 3rem;
+}
+#updateProfileImage > img {
+  width: 20vmax;
+  border-radius: 100%;
+  margin: 2vmax 5vmax;
+}
+}

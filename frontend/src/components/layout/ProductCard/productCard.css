@@ -1,0 +1,124 @@
+
+.product{
+    display: flex;
+    /* overflow: hidden; */
+   flex-wrap: wrap;
+    place-items: center;
+    background: linear-gradient(375deg, #333, #333);
+  }
+  ::selection{
+    color: #333;
+    background: #3586ff;
+  }
+  .wrapper{
+    height: 400px;
+    width: 320px;
+    position: relative;
+    transform-style: preserve-3d;
+      perspective: 1000px;
+      margin-left: 30px;
+  }
+  .wrapper .card{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    background: #333;
+    border-radius: 10px;
+    transform: translateY(0deg);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+    transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
+  }
+  .wrapper:hover > .front-face{
+    transform: rotateY(-180deg);
+  }
+  .wrapper .card img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .wrapper .back-face{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    transform: rotateY(180deg);
+  }
+  .wrapper:hover > .back-face{
+    transform: rotateY(0deg);
+  }
+  .wrapper .back-face img{
+    height: 150px;
+    width: 150px;
+    padding: 5px;
+    border-radius: 50%;
+    background: linear-gradient(375deg, #333, #333);
+  }
+  .wrapper .back-face .info{
+    text-align: center;
+  }
+  .wrapper .back-face .info p{
+    margin-top: 60px;
+  }
+  .back-face .info .title{
+    font-size: 30px;
+    font-weight: 500;
+  }
+  /* text animation////////// */
+  .neon_product{
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+    padding: 0 20px;
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 0 20px purple;
+
+}
+.neon_product::after{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    z-index: -1;
+    color: #ff005b;
+    filter: blur(15px);
+}
+.neon_product::before{
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fe3a80;
+    z-index: -2;
+    opacity: .5;
+    filter: blur(40px);
+}
+  /* footer   //////////////////////////////////////////////////// */
+  .footer{
+    width: 100%;
+  }
+/* responsiveness///////// */
+
+
+
+@media (max-width:414px){
+  .wrapper .card{
+    right: 5%;
+} 
+ 
+}
+@media (max-width:393px){
+  .wrapper .card{
+        right: 5%;
+  } 
+ 
+}

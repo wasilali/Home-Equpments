@@ -1,0 +1,251 @@
+.product-details{
+    background-color: #333;
+    width: 100vw;
+    max-width: 100%;
+    /* height: 300px; */
+    padding: 6vmax;
+    box-sizing: border-box;
+   
+    display: flex;
+   
+    margin: 0;
+}
+.img-container{
+    flex: 6;
+  height: 434px;
+  width: 390px;
+  text-align: center;
+
+}
+.img-container img{
+  
+  width: 30vmax;
+  height: 380px;
+  border-radius: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.img-container img:hover{
+    transform: scale(0.9);
+  }
+.detailBlock{
+    flex: 6;
+    display: flex;
+    align-items: flex-start;
+}
+.product-details > div{
+/* border: 1px solid white; */
+flex-direction: column;
+justify-content: space-evenly;
+padding: 2vmax;
+box-sizing: border-box;
+}
+.detailBlock-1 h2{
+color: tomato;
+font:600 1.6vmax cursive;
+}
+.detailBlock-1 p{
+    color: #edae31;
+    font:200 0.6vmax cursive;
+}
+.detailsBlock-2{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   border-top: 1px solid gray;
+   border-bottom: 1px solid gray;
+   width: 70%;
+   padding: 0.5vmax 0;
+}
+.detailsBlock-3{
+  width: 70%;
+}
+.detailsBlock-3 h1{
+   color: tomato;
+   font: 400 1.8vmax cursive ;
+   margin: 1vmax 0;
+}
+.detailsBlock-3-1{
+    display: flex;
+}
+.detailsBlock-3-1-1 >button{
+border: none;
+background-color: #8a8b79;
+padding: 0.5vmax;
+cursor: pointer;
+color: rgb(245, 5, 5);
+transition: all 0.5s;
+}
+.detailsBlock-3-1-1 > button:hover{
+    background-color: yellow;
+}
+.detailsBlock-3-1-1 > input{
+    border: none;
+    padding: 0.5vmax;
+    width: 2vmax;
+    text-align: center;
+    outline: none;
+    font: 400 0.8vmax cursive;
+    color: black;
+}
+.detailsBlock-3-1 > button:last-child{
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: all 0.5s;
+    background-color: tomato;
+    font: 500 0.7vmax cursive;
+    border-radius: 20px;
+    padding: 0.5vmax 2vmax;
+    margin-left: 1vmax;
+    outline: none;
+}
+.detailsBlock-3-1 > button:last-child:hover{
+    background-color: yellow;
+
+}
+.detailsBlock-3 > p{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 1vmax 0; 
+    color: tomato;
+    font: 400 1vmax italic;
+    margin: 1vmax 0;
+}
+.detailsBlock-4{
+    color: tomato;
+    font: 500 1.2vmax sass-serif;
+}
+.detailsBlock-4 > p{
+    color: #8a8b79;
+    font: 300 0.8vmax italic;
+}
+.submitReview{
+    border: none;
+    background-color: tomato;
+    font: 500 0.7vmax ;
+    border-radius: 20px;
+    padding: 0.6vmax 2vmax;
+    margin: 1vmax 0;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+    outline: none;
+}
+.submitReview:hover{
+    background-color: yellow;
+    transform: scale(1.1);
+}
+.reviewsHeading{
+   color: white; 
+   font: 500 1.4vmax;
+   text-align: center;
+   border-bottom: 1px solid gray;
+   padding: 1vmax;
+   width: 20vmax;
+   margin: auto;
+   margin-bottom: 4vmax;
+}
+.reviewCard{
+    /* flex: none; */
+    box-shadow: 0 0 5px gray;
+    border: 1px  solid gray;
+    width: 30vmax;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1vmax;
+    padding: 3vmax;
+}
+.noReviews{
+    font: 400 1.3vmax;
+    text-align: center;
+    color: red;
+    margin-bottom: 2vmax;
+}
+.reviews{
+    display: flex;
+    overflow: auto;
+}
+.reviewCard > img{
+    width: 5vmax;
+}
+.reviewCard > p{
+    margin-top: 1vmax;
+color: gray;
+font: 600 0.9vmax;
+}
+
+.reviewCardComment{
+
+    color: white;
+    font: 300 0.8vmax cursive;
+   
+}
+@media screen and (max-width: 700px){
+    .product-details{
+        flex-direction: column;
+        height: unset;
+        align-items: center;
+    }
+    .product-details:last-child{
+        align-items: center;
+        
+    }
+    .detailBlock{
+        width: 100%;
+    }
+   .detailBlock-1 > h2{
+    font-size: 2.8vmax;
+   }
+
+   .detailBlock-3 > h2{
+       font: 700 3vmax;
+       text-align: center;
+   }
+   .detailsBlock-3-1{
+       flex-direction: column;
+
+   }
+   .detailsBlock-3-1-1{
+       padding-top: 1.2vmax;
+       width: 18vmax;
+   }
+   .detailsBlock-3-1-1 > button{
+       padding: 1.2vmax;
+       width: 4vmax;
+      
+   }
+   .detailsBlock-3-1-1 > input{
+       padding: 1.5vmax;
+       width: 3vmax;
+       font: 400 1.8vmax;
+   }
+   .detailsBlock-3-1> button:last-child{
+       font: 700 2.7vmax;
+       padding: 1.5vmax;
+       width: 20vmax;
+       margin-top: 2vmax ;
+   }
+   .detailsBlock-3 > p{
+       padding: 2.5vmax 0;
+       font-size: 1.2rem;
+      
+   }
+   .detailsBlock-4{
+      font-size: 1.2rem;
+   }
+   .detailsBlock-4 > p{
+      font-size: 1rem;
+       
+   }
+   .submitReview{
+       font: 500 1.7vmax;
+       padding: 1.5vmax;
+       width: 20vmax;
+       margin: 3vmax 0;
+   }
+   .img-container img{
+       width: 80%;
+   }
+}

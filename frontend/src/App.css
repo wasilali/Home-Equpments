@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    cursor: url("./images/cursor.png"), auto;
+  }
+/* chrome.... */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* fire fox ///////*/
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+.greenColor{
+    color: green;
+}
+.redColor{
+    color: red;
+}

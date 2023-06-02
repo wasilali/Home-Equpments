@@ -20,10 +20,10 @@
   margin-left: -2rem;
 }
 .productsHeading {
-    margin: 1vmax auto;
+    margin:auto;
     width: 20%;
     border-bottom: 1px solid yellow;
-    padding: 2vmax;
+    padding: 2vmax 0;
     color: tomato;
     font: 800 3vmax "Roboto";
     /* text-shadow: 0 0 20px #ff005b; */
@@ -129,5 +129,8 @@
     }
     .category-link {
       font: 400 1.8vmax "Roboto";
+    }
+    .productsHeading {
+      width: 100%;
     }
   }

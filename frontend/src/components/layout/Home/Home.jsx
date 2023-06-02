@@ -30,29 +30,30 @@ const Home = () => {
 {
   loading ? <Loader/>:     <>
   <MetData title="Ecommerice"/>
-  <div className='home'>
+  <div className='home h-screen'>
     {
-      isAuthenticated?(<h2 className='t1'><span>W</span>ellcome <span>{user && user.name}</span></h2>):
-      (<h2 className='t1'><span>Please</span> Login <span>For better Exprience</span></h2>)
+      isAuthenticated?(<h2 className='t1 mb-[5rem]'><span>W</span>elcome <span>{user && user.name}</span></h2>):
+      (<h2 className='t1 mb-[5rem]'><span>W</span>elcome <span>to Our Store</span> please <span>Login</span></h2>)
     }
-  
-  <div class="text2m">
+  <div>
+  <div class="robo mt-5 md:mt-[8rem] flex justify-center text-center items-center md:text-3xl ">Discover the best home equipment and enjoy an amazing shopping experience</div>
+  </div>
+  <div class="text2m -mt-2">
 <div class="wrapper">
-  <div class="static-txt robo">You can buy what you want</div>
   <ul class="dynamic-txts">
     <li><span>Home...</span></li>
-    <li className=' -ml-5'><span>Equipments...</span></li>
+    <li className=' -ml-8 text-[yellow]'><span className='text-[yellow]'>Equipments...</span></li>
     <li><span>Home...</span></li>
-    <li className=' -ml-5'><span>Equipments...</span></li>
+    <li className=' -ml-8 text-[yellow]'><span className='text-[yellow]'>Equipments...</span></li>
   </ul>
 </div>
 </div>
 
 <h2 className='neon h2' id='ss1' data-text="Find Amazing Products Below">Find Amazing Products Below</h2>
 <a id='scroll' href="#ss" className=' flex '>Scroll <span className=' mt-1 ml-2'><BiMouseAlt/></span></a>
- <h2 id='ss' className='neon featured h2'>Featured Products </h2>
  
   </div>
+ <h2 id='ss' className='neon featured h2'>Featured Products </h2>
   <div  className='homeproduct'>
     {products && products.map(product=>(
        <ProductCard product={product}/>

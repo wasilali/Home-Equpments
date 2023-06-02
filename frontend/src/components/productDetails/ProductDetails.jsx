@@ -6,6 +6,8 @@ import './productDetails.css'
 import Carousel from 'react-material-ui-carousel'
 import { useParams } from 'react-router-dom'
 import ReviewCard from './ReviewCard'
+import { Favorite, FavoriteBorder } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
 import Loader from '../layout/loading/Loader'
 import {useAlert} from 'react-alert'
 import MetData from '../layout/MetData'
@@ -34,7 +36,11 @@ const ProductDetails = () => {
     const [rating ,setRating]=useState()
     const [open ,setOpen]=useState(false)
     const [comment,setComment]=useState("")
+    const [isClicked, setIsClicked] = useState(false);
 
+    const handleClick = () => {
+      setIsClicked(!isClicked);
+    };
     useEffect(() => {
       if(error){
         alert.error(error)
@@ -118,9 +124,20 @@ const ProductDetails = () => {
      
     </div>
     <div className='detailBlock'>
+      <div className='flex justify-between items-center w-[70%]'>
       <div className='detailBlock-1'>
         <h2>{product.name}</h2>
         <p>Product # {product._id}</p>
+      </div>
+      <div>
+      <IconButton onClick={handleClick}>
+      {isClicked ? (
+        <Favorite style={{ color: 'red' }} />
+      ) : (
+        <Favorite style={{ color: 'white' }} />
+      )}
+    </IconButton>
+      </div>
       </div>
       <div className='detailsBlock-2'>
       <Rating {...options}/>
@@ -148,9 +165,13 @@ const ProductDetails = () => {
      </p>
       </div>
       <div className='detailsBlock-4'>
-        Discription:<p>{product.description}</p>
+        Discription:
       </div>
       <button className='submitReview' onClick={submitReviewToggle}>Submit Review</button>
+      <div className='detailsBlock-4'>
+        Report this Product?
+      </div>
+      <button className='submitReview' onClick={submitReviewToggle}> Report Box</button>
     </div>
   </div>
   {/* for the product reviews agr review haa toh ak div show krvai or us mA KAHA K AGR REVIEW HAA TOH USPER MAPFUNCTION CHALA DIYA */}

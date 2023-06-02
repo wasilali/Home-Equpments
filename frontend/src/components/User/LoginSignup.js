@@ -135,6 +135,7 @@ useEffect(()=>{
             <Link to="/password/forgot">Forgot Password ?</Link>
            <input type="submit" value="login" className="loginBtn" />
           </form>
+          <button className=' mt-5'>Google</button>
           <form
           className="signUpForm"
           ref={registerTab}
@@ -187,6 +188,7 @@ useEffect(()=>{
           /> 
      
           </form>
+          <button>Google</button>
          </div>
         </div>
         </>

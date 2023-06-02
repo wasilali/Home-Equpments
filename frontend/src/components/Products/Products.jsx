@@ -71,7 +71,7 @@ const count=filteredProductsCount
     ))}
 </div>
 
-<div className="filterBox">
+<div className="filterBox mt-10">
   <h4 className='margins text-[2rem] text-[tomato]'>Price</h4>
   <Slider
     value={price}
@@ -109,24 +109,24 @@ const count=filteredProductsCount
     />
   </fieldset>
 </div>
-{resultPerPage < count && (
-  <div className="paginationBox">
-    <Pagination
-      activePage={currentPage}
-      itemsCountPerPage={resultPerPage}
-      totalItemsCount={productsCount}
-      onChange={setCurrentPageNo}
-      nextPageText="Next"
-      prevPageText="Prev"
-      firstPageText="1st"
-      lastPageText="Last"
-      itemClass="page-item"
-      linkClass="page-link"
-      activeClass="pageItemActive"
-      activeLinkClass="pageLinkActive"
-    />
-  </div>
-)}
+{/* {resultPerPage < count && (
+  // <div className="paginationBox">
+  //   <Pagination
+  //     activePage={currentPage}
+  //     itemsCountPerPage={resultPerPage}
+  //     totalItemsCount={productsCount}
+  //     onChange={setCurrentPageNo}
+  //     nextPageText="Next"
+  //     prevPageText="Prev"
+  //     firstPageText="1st"
+  //     lastPageText="Last"
+  //     itemClass="page-item"
+  //     linkClass="page-link"
+  //     activeClass="pageItemActive"
+  //     activeLinkClass="pageLinkActive"
+  //   />
+  // </div>
+)} */}
         </>
     )}
     </>

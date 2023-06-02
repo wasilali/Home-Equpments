@@ -20,7 +20,7 @@
 .img-container img{
   
   width: 30vmax;
-  height: 380px;
+  height: 420px;
   border-radius: 20px;
   transition: all 0.5s;
   cursor: pointer;
@@ -131,6 +131,8 @@ transition: all 0.5s;
     cursor: pointer;
     transition: all 0.5s;
     outline: none;
+    width: 70%;
+    border-bottom: 1px solid gray;
 }
 .submitReview:hover{
     background-color: yellow;

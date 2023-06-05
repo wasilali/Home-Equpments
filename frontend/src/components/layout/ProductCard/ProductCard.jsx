@@ -32,7 +32,7 @@ const ProductCard = ({product}) => {
     <>
     <Tilt options={defaultOptions}>
     <Link to={`/product/${product._id}`} >
-    <div className='product md:mt-5' >
+    <div className='product md:mt-10' >
     <div class="wrapper" >
       <div class="card front-face">
         <img src={product.images[0].url}/>

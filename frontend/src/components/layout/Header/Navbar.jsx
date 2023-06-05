@@ -9,17 +9,36 @@ import {IoMdContact} from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../actions/userAction'
 import { useAlert } from 'react-alert'
+import { IconButton } from '@material-ui/core'
+import { Favorite } from '@material-ui/icons'
+
+import Tooltip from '@mui/material/Tooltip';
+import { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@material-ui/core/styles';
+import WishList from '../../Cart/WishList'
 const Navbar = () => {
-  const navRef=useRef()
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+  const navRef=useRef();
   const dispatch=useDispatch();
   const alert=useAlert();
   const showNavbar=()=>{
     navRef.current.classList.toggle("responsive_nav")
-  }
-  const {isAuthenticated,user}=useSelector(state=>state.user)
+  };
+  const {isAuthenticated,user}=useSelector(state=>state.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   function logoutUser() {
+    
     dispatch(logout())
     alert.success("logout Successfully...")
    
@@ -27,6 +46,7 @@ const Navbar = () => {
  }
 
   return (
+    
     <>
         {/* navbar */}
         <nav className=" hidden lg:flex justify-between bg-[tomato] text-white w-full">
@@ -63,7 +83,14 @@ const Navbar = () => {
             </ul>
             {/* Header Icons */}
             <div className="hidden xl:flex items-center space-x-5">
-              <Link className="hover:text-[yellow]" to="/search">
+            <IconButton>
+        <BootstrapTooltip title="wish list">
+        <Favorite style={{ color: 'white' }} onClick={()=>{
+          setOpen(!open)
+        }} />
+        </BootstrapTooltip>
+    </IconButton>
+              {/* <Link className="hover:text-[yellow]" to="/search">
               <svg
               xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-8 mt-[4px]"
@@ -78,7 +105,7 @@ const Navbar = () => {
     d="M10 17.5l-3.5-3.5m0 0a5 5 0 113.5-8.5 5 5 0 01-3.5 8.5z"
   />
 </svg>
-              </Link>
+              </Link> */}
               <Link className="flex items-center hover:text-[yellow]" to="/cart">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +154,6 @@ const Navbar = () => {
             </div>
           </div>
         </nav>
-        
    <header className=' lg:hidden'>
     <h3 className='text-xl font-[500] font-heading robo'>Home Equipments</h3>
      
@@ -140,12 +166,22 @@ const Navbar = () => {
          <FaTimes/>
        </button>
      <Link onClick={showNavbar} className='navSerch' to="/login">{isAuthenticated?<img style={{height:"30px",width:"30px",borderRadius:"50%",marginTop:"-0.3rem" }} src={user.avatar ?  user.avatar.url : ""} alt="gfd" />:<IoMdContact/>}</Link>
-     <Link onClick={showNavbar} className='navLogin' to="/search"><FaSearch/></Link>
+     {/* <Link onClick={showNavbar} className='navLogin' to="/search"><FaSearch/></Link> */}
+    <div onClick={showNavbar} className='navLogin'><IconButton>
+        <BootstrapTooltip title="wish list">
+        <Favorite style={{ color: 'white' }} onClick={()=>{
+          setOpen(!open)
+        }} />
+        </BootstrapTooltip>
+    </IconButton>
+      </div> 
+     
      </nav>
      <button className='nav-btn' onClick={showNavbar}>
        <FaBars/>  
      </button>
    </header>
+   <WishList setOpen={setOpen} open={open} />
     </>
   )
 }

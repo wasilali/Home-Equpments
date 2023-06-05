@@ -11,6 +11,41 @@ import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider';
 import { useAlert } from 'react-alert';
 import MetData from '../layout/MetData'
+import { makeStyles } from '@material-ui/core/styles';
+import { InputBase, Button } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    margin: '0 auto',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: '#f0f0f0',
+    padding: theme.spacing(1),
+    [theme.breakpoints.up('sm')]: {
+      width: '60%',
+    },
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  button: {
+    marginLeft: theme.spacing(1),
+    padding: theme.spacing(1.5, 3),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  },
+  icon: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
 const categorys= [
   "Laptop",
@@ -57,14 +92,26 @@ const priceHandler=(event,newPrice)=>{
   setPrice(newPrice)
 }
 const count=filteredProductsCount
+const classes = useStyles();
   return (
     <>
     {loading ? <Loader/> : (
         <>
         <MetData title="PRODUCTS-Ecommerice"/>
         <h2 className="productsHeading">Equipments</h2>
-
+        {/* <div className={classes.root}>
+      <SearchIcon className={classes.icon} />
+      <InputBase
+        className={classes.input}
+        placeholder="Search..."
+        inputProps={{ 'aria-label': 'search' }}
+      />
+      <Button className={classes.button} variant="contained">
+        Search
+      </Button>
+    </div> */}
 <div className="products">
+  
   {products &&
     products.map((product) => (
       <ProductCard key={product._id} product={product} />
@@ -109,24 +156,24 @@ const count=filteredProductsCount
     />
   </fieldset>
 </div>
-{/* {resultPerPage < count && (
-  // <div className="paginationBox">
-  //   <Pagination
-  //     activePage={currentPage}
-  //     itemsCountPerPage={resultPerPage}
-  //     totalItemsCount={productsCount}
-  //     onChange={setCurrentPageNo}
-  //     nextPageText="Next"
-  //     prevPageText="Prev"
-  //     firstPageText="1st"
-  //     lastPageText="Last"
-  //     itemClass="page-item"
-  //     linkClass="page-link"
-  //     activeClass="pageItemActive"
-  //     activeLinkClass="pageLinkActive"
-  //   />
-  // </div>
-)} */}
+{resultPerPage < count && (
+  <div className="paginationBox">
+    <Pagination
+      activePage={currentPage}
+      itemsCountPerPage={resultPerPage}
+      totalItemsCount={productsCount}
+      onChange={setCurrentPageNo}
+      nextPageText="Next"
+      prevPageText="Prev"
+      firstPageText="1st"
+      lastPageText="Last"
+      itemClass="page-item"
+      linkClass="page-link"
+      activeClass="pageItemActive"
+      activeLinkClass="pageLinkActive"
+    />
+  </div>
+)}
         </>
     )}
     </>

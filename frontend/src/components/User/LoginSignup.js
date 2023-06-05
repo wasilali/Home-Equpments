@@ -9,7 +9,7 @@ import  { useDispatch,useSelector } from "react-redux"
 import { login,clearErrors,register } from '../../actions/userAction'
 import { useAlert } from "react-alert"
 import { useNavigate } from 'react-router-dom'
-
+import profilepng from '../../images/profileImg.png'
 const LoginSignup = () => {
     const dispatch=useDispatch()
     const alert=useAlert()
@@ -31,7 +31,7 @@ const {error,loading,isAuthenticated}=useSelector(state=>state.user)
     
     const {name,email,password}=user
     const [avatar,setAvatar]=useState()
-    const [avatarPreview,setAvatarPreview]=useState("/anny.png")
+    const [avatarPreview,setAvatarPreview]=useState(profilepng)
 
     const loginSubmit=(e)=>{
         e.preventDefault()
@@ -133,9 +133,8 @@ useEffect(()=>{
             />
            </div>
             <Link to="/password/forgot">Forgot Password ?</Link>
-           <input type="submit" value="login" className="loginBtn" />
+           <input type="submit" value="login" className="loginBtn " />
           </form>
-          <button className=' mt-5'>Google</button>
           <form
           className="signUpForm"
           ref={registerTab}
@@ -188,7 +187,6 @@ useEffect(()=>{
           /> 
      
           </form>
-          <button>Google</button>
          </div>
         </div>
         </>

@@ -10,6 +10,10 @@
 body {
     cursor: url("./images/cursor.png"), auto;
   }
+  textarea {
+    resize: vertical;
+    border: 2px solid !important;
+}
 /* chrome.... */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button{

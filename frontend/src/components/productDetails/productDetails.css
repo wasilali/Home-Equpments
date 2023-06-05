@@ -18,9 +18,9 @@
 
 }
 .img-container img{
-  
   width: 30vmax;
   height: 420px;
+  margin-left: 4rem;
   border-radius: 20px;
   transition: all 0.5s;
   cursor: pointer;
@@ -170,7 +170,7 @@ transition: all 0.5s;
     overflow: auto;
 }
 .reviewCard > img{
-    width: 5vmax;
+    width: 6vmax;
 }
 .reviewCard > p{
     margin-top: 1vmax;
@@ -249,5 +249,7 @@ font: 600 0.9vmax;
    }
    .img-container img{
        width: 80%;
+       
+  margin-left: 2.5rem;
    }
 }

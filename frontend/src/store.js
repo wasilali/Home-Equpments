@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { productsReducer,productDetailsReducer, newReviewReducer, newProductReducer, delProductReducer, productReviewsReducer, reviewReducer } from './reducers/productReducer'
 import { allUserReducer, forgotPassReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
-import { cartReducer } from "./reducers/cartReducer";
+import { cartReducer, wishReducer } from "./reducers/cartReducer";
 import { allOrderReducer, myOrderReducer, newOrderReducer, orderDetailsReducer, orderReducer } from "./reducers/orderReducer";
 
 const reducer=combineReducers({
@@ -13,6 +13,7 @@ user:userReducer,
 profile:profileReducer,
 forgotPassword:forgotPassReducer,
 cart:cartReducer,
+wish:wishReducer,
 newOrder:newOrderReducer,
 myOrders:myOrderReducer,
 orderDetails:orderDetailsReducer,
@@ -34,6 +35,11 @@ let initialState= {
         [],
         shippingInfo:localStorage.getItem("shippingInfo")
         ? JSON.parse(localStorage.getItem("shippingInfo")) : {},
+    },
+    wish:{
+        wishItems: localStorage.getItem("wishList")?
+        JSON.parse(localStorage.getItem("wishList")):
+        [],
     },
 
 };

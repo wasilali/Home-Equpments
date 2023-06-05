@@ -22,7 +22,23 @@ export const addItemsToCart =(id,quantity)=>async(dispatch,getstate)=>{
 localStorage.setItem("cartItems",JSON.stringify(getstate().cart.cartItems))
 
 }
+export const addItemsToWishList =(id,quantity)=>async(dispatch,getstate)=>{
+    const { data }=await axios.get(`/api/v1/product/${id}`);
 
+    dispatch({
+        type:"ADD_TO_WISH_LIST",
+        payload:{
+            product:data.product._id,
+            name:data.product.name,
+            price:data.product.price,
+            image:data.product.images[0].url,
+            stock:data.product.stock,
+            quantity,
+        }
+    });
+localStorage.setItem("wishList",JSON.stringify(getstate().wish.wishItems))
+
+}
 //remove items,...
 export const removeItemsToCart =(id)=>async(dispatch,getstate)=>{
     dispatch({
@@ -32,7 +48,13 @@ export const removeItemsToCart =(id)=>async(dispatch,getstate)=>{
     localStorage.setItem("cartItems",JSON.stringify(getstate().cart.cartItems))
 }
 
-
+export const removeWishToCart =(id)=>async(dispatch,getstate)=>{
+    dispatch({
+        type:"REMOVE_WISH_ITEMDS",
+        payload:id,
+    });
+    localStorage.setItem("wishList",JSON.stringify(getstate().wish.wishItems))
+}
 //save shipping info
 export const saveShippingInfo = (data) => async (dispatch) => {
     dispatch({

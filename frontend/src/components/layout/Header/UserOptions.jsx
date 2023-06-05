@@ -11,6 +11,7 @@ import { useAlert } from 'react-alert'
 import { logout } from '../../../actions/userAction'
 import {useDispatch, useSelector} from 'react-redux'
 import Backdrop from "@material-ui/core/Backdrop"
+import { FaSearch } from 'react-icons/fa'
 const UserOptions = ({user}) => {
     const { cartItems } = useSelector((state) => state.cart);
     const [open, setOpen] = useState(false)
@@ -22,6 +23,7 @@ const UserOptions = ({user}) => {
         {icon:<ListAltIcon/>,name:"Orders",func:orders},
         {icon:<PersonIcon/>,name:"Profile",func:account},
         {icon:<ShoppingCartIcon style={{color:cartItems.length?"tomato":"yellow"}} /> ,name:"Cart("+cartItems.length+")",func:shopping},
+        {icon:<FaSearch/>,name:"search",func:searchItems},
         {icon:<ExistToAppIcon/>,name:"Logout",func:logoutUser},
    
     ]
@@ -44,8 +46,9 @@ const UserOptions = ({user}) => {
     function logoutUser() {
        dispatch(logout())
        alert.success("logout Successfully")
-      
-        
+    }
+    function searchItems() {
+        navigate('/search')
     }
   return (
     <>

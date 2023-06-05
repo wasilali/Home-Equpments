@@ -11,7 +11,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Loader from '../layout/loading/Loader'
 import {useAlert} from 'react-alert'
 import MetData from '../layout/MetData'
-import { addItemsToCart } from '../../actions/cartAction'
+import Tooltip from '@mui/material/Tooltip';
+import { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@material-ui/core/styles';
+import { addItemsToCart, addItemsToWishList, removeWishToCart } from '../../actions/cartAction'
 import {
   Dialog,
   DialogActions,
@@ -23,7 +26,16 @@ import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 
 const ProductDetails = () => {
-
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
   let params = useParams();
   
     const alert=useAlert()
@@ -33,14 +45,26 @@ const ProductDetails = () => {
  
     const {product,loading,error}=useSelector(state=>state.productDetails)
     const {success,error:reviewError}=useSelector(state=>state.newReview)
+    const { wishItems }=useSelector(state=>state.wish)
+  //  const isChackedItems= cartItems&&cartItems.map((i)=>(i.product===params.id))
+
     const [rating ,setRating]=useState()
     const [open ,setOpen]=useState(false)
     const [comment,setComment]=useState("")
     const [isClicked, setIsClicked] = useState(false);
+    console.log("wishItems",wishItems,isClicked);
 
-    const handleClick = () => {
-      setIsClicked(!isClicked);
-    };
+    // setIsClicked(!!item);
+    const item = wishItems.find(i => i.product === params.id);
+
+    useEffect(()=>{
+      if (item) {
+        setIsClicked(true)
+      }else{
+        setIsClicked(false)
+      }
+    },[wishItems])
+
     useEffect(() => {
       if(error){
         alert.error(error)
@@ -61,13 +85,24 @@ const ProductDetails = () => {
  
    
     const options={
-
       size:"large",
       value:product.ratings,
       readOnly:true,
       precision:0.5,
   }
   const [quantity, setQuantity] = useState(1);
+
+  const handleClick = () => {
+    if(isClicked){
+      dispatch(removeWishToCart(params.id))
+      alert.success("Item remove from wish list");
+    }else{
+      dispatch(addItemsToWishList(params.id, quantity));
+      alert.success("Item Added To wish list");
+    }
+
+
+  };
 
   const increaseQuantity = () => {
     if (product.stock <= quantity) return;
@@ -86,7 +121,6 @@ const ProductDetails = () => {
     dispatch(addItemsToCart(params.id, quantity));
     alert.success("Item Added To Cart");
   };
-
   const submitReviewToggle= ()=>{
     open ? setOpen(false) : setOpen(true);
   }
@@ -108,12 +142,13 @@ const ProductDetails = () => {
   <>
   <MetData  title={`${product.name} --Ecommerice`}/>
   <div className='product-details'>
-    <div className='img-container'>
+    <div className='img-container '>
         <Carousel>
         {product.images &&
        product.images.map((item, i) => (
          <img
-           className="CarouselImage"
+           className="w-full object-cover rounded-xl
+           transition-all"
            key={i}
            src={item.url}
            alt={`${i} Slide`}
@@ -129,14 +164,23 @@ const ProductDetails = () => {
         <h2>{product.name}</h2>
         <p>Product # {product._id}</p>
       </div>
-      <div>
+      <div className='flex'>
+    
       <IconButton onClick={handleClick}>
-      {isClicked ? (
+      {isClicked ? ( <>
+        <BootstrapTooltip title="remove to wish list">
         <Favorite style={{ color: 'red' }} />
+        </BootstrapTooltip>  
+      </>
       ) : (
+        <>
+        <BootstrapTooltip title="wish list">
         <Favorite style={{ color: 'white' }} />
+        </BootstrapTooltip>
+        </>
       )}
     </IconButton>
+    
       </div>
       </div>
       <div className='detailsBlock-2'>
@@ -184,14 +228,8 @@ const ProductDetails = () => {
             open={open}
             onClose={submitReviewToggle}
           >
-            <DialogTitle>Submit Review</DialogTitle>
-            <DialogContent className="submitDialog">
-              <Rating
-                onChange={(e) => setRating(e.target.value)}
-                value={rating}
-                size="large"
-              />
-
+            <DialogTitle >Submit Review</DialogTitle>
+            <DialogContent className="submitDialog flex flex-col">
               <textarea
                 className="submitDialogTextArea"
                 cols="30"
@@ -199,6 +237,13 @@ const ProductDetails = () => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
               ></textarea>
+              <Rating
+                onChange={(e) => setRating(e.target.value)}
+                value={rating}
+                size="large"
+                style={{margin:"2rem 0 0 0",justifyContent:"center",alignItems:"center",textAlign:"center"}}
+              />
+
             </DialogContent>
             <DialogActions>
               <Button onClick={submitReviewToggle} color="secondary">

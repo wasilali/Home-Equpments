@@ -36,15 +36,16 @@ const Home = () => {
       (<h2 className='t1 mb-[5rem]'><span>W</span>elcome <span>to Our Store</span> please <span>Login</span></h2>)
     }
   <div>
-  <div class="robo mt-5 md:mt-[8rem] flex justify-center text-center items-center md:text-3xl ">Discover the best home equipment and enjoy an amazing shopping experience</div>
+  <div class="robo mt-5 md:mt-[8rem] flex justify-center text-center items-center sm:text-3xl px-6">Discover the best home equipment and enjoy an amazing shopping experience
+  </div>
   </div>
   <div class="text2m -mt-2">
 <div class="wrapper">
   <ul class="dynamic-txts">
-    <li><span>Home...</span></li>
-    <li className=' -ml-8 text-[yellow]'><span className='text-[yellow]'>Equipments...</span></li>
-    <li><span>Home...</span></li>
-    <li className=' -ml-8 text-[yellow]'><span className='text-[yellow]'>Equipments...</span></li>
+    <li><span>Home . . .</span></li>
+    <li className=' -ml-10 text-[yellow]'><span className='text-[yellow]'>Equipments . . .</span></li>
+    <li><span>Home . . .</span></li>
+    <li className=' -ml-10 text-[yellow]'><span className='text-[yellow]'>Equipments . . .</span></li>
   </ul>
 </div>
 </div>
@@ -54,7 +55,7 @@ const Home = () => {
  
   </div>
  <h2 id='ss' className='neon featured h2'>Featured Products </h2>
-  <div  className='homeproduct'>
+  <div  className='px-5 xl:px-12 grid lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 grid-cols-1 gap-3'>
     {products && products.map(product=>(
        <ProductCard product={product}/>
     ))}

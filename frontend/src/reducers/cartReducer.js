@@ -38,3 +38,34 @@ export const cartReducer = (state={cartItems:[] ,shippingInfo:{}},action)=>{
         return state
     }
 }
+
+export const wishReducer = (state={wishItems:[]},action)=>{
+    switch (action.type) {
+        case "ADD_TO_WISH_LIST":
+        const items = action.payload;
+
+        const isItemExist= state.wishItems.find((i)=>(i.product===items.product))
+            
+            if (isItemExist) {
+                return{
+                    ...state,
+                    wishItems:state.wishItems.map((i)=>
+                    (i.product===isItemExist.product ? items:i))
+                }
+            }else{
+                return{
+                ...state,
+                wishItems:[...state.wishItems,items]
+                }
+
+            }
+            case "REMOVE_WISH_ITEMDS":
+                return {
+                    ...state,
+                    wishItems:state.wishItems.filter(i=>i.product !== action.payload)
+                }
+    
+        default:
+        return state
+    }
+}

@@ -3,6 +3,7 @@ import { Rating } from "@material-ui/lab";
 import profilepng from '../../images/profileImg.png'
 
 const ReviewCard = ({review}) => {
+  console.log("review",review);
     const options={
       value:review.rating,
       readOnly:true,
@@ -13,7 +14,11 @@ const ReviewCard = ({review}) => {
   return (
     <>
     <div className='reviewCard'>
-        <img src={profilepng} alt="" />
+      {
+        review.image?
+        <img className=' rounded-[50%]' src={review.image} alt="preview" />:
+        <img className='' src={profilepng} alt="preview" />
+      }
         <p>{review.name}</p>
         <Rating {...options}/>
         <span className='reviewCardComment'>{review.comment}</span>

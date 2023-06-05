@@ -33,7 +33,7 @@
   .products {
     display: flex;
     flex-wrap: wrap;
-    /* margin-left: 3rem; */
+    margin-left: 3rem;
     padding: 0 5vmax;
     justify-content: center;
     min-height: 30vh;
@@ -55,7 +55,7 @@
     background-color: tomato;
     list-style: none;
     border: 1px solid rgba(0, 0, 0, 0.178);
-    padding: 1vmax 1.5vmax;
+    padding: 1vmax 1vmax;
     transition: all 0.3s;
     cursor: pointer;
   }

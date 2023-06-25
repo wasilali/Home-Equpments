@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import './OrderDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams,Link } from 'react-router-dom'
-import { Typography } from "@material-ui/core";
 import { orderDetails,clearErrors } from '../../actions/orderAction'
 import Loader from '../layout/loading/Loader';
 import MetData from '../layout/MetData';
@@ -30,30 +29,30 @@ const OrderDetails = () => {
         <MetData title="Order Details" />
         <div className="orderDetailsPage">
           <div className="orderDetailsContainer">
-            <Typography component="h1">
+            <h1>
               Order #{order && order._id}
-            </Typography>
-            <Typography>Shipping Info</Typography>
+            </h1>
+            <p className=' text-[tomato]'>Shipping Info</p>
             <div className="orderDetailsContainerBox">
               <div>
-                <p>Name:</p>
-                <span>{order.user && order.user.name}</span>
+                <p className=' text-white'>Name:</p>
+                <span className=' text-white'>{order.user && order.user.name}</span>
               </div>
               <div>
-                <p>Phone:</p>
-                <span>
+                <p className=' text-white'>Phone:</p>
+                <span className=' text-white'>
                   {order.shippingInfo && order.shippingInfo.phoneNo}
                 </span>
               </div>
               <div>
-                <p>Address:</p>
-                <span>
+                <p className=' text-[tomato]'>Address:</p>
+                <span className=' text-white'>
                   {order.shippingInfo &&
                     `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
                 </span>
               </div>
             </div>
-            <Typography>Payment</Typography>
+            <p className=' text-[tomato]'>Payment</p>
             <div className="orderDetailsContainerBox">
               <div>
                 <p
@@ -72,12 +71,12 @@ const OrderDetails = () => {
               </div>
 
               <div>
-                <p>Amount:</p>
-                <span>{order.totalPrice && order.totalPrice}</span>
+                <p className=' text-[tomato]'>Amount:</p>
+                <span className=' text-white'>{order.totalPrice && order.totalPrice}</span>
               </div>
             </div>
 
-            <Typography>Order Status</Typography>
+            <p className=' text-[tomato]'>Order Status</p>
             <div className="orderDetailsContainerBox">
               <div>
                 <p
@@ -94,16 +93,16 @@ const OrderDetails = () => {
           </div>
 
           <div className="orderDetailsCartItems">
-            <Typography>Order Items:</Typography>
+            <p className=' text-[tomato]'>Order Items:</p>
             <div className="orderDetailsCartItemsContainer">
               {order.orderItems &&
                 order.orderItems.map((item) => (
                   <div key={item.product}>
                     <img src={item.image} alt="Product" />
-                    <Link to={`/product/${item.product}`}>
+                    <Link to={`/product/${item.product}`} className=' text-white'>
                       {item.name}
                     </Link>{" "}
-                    <span>
+                    <span className=' text-white'>
                       {item.quantity} X ₹{item.price} ={" "}
                       <b>₹{item.price * item.quantity}</b>
                     </span>

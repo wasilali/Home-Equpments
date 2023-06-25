@@ -9,17 +9,19 @@ exports.reportProduct= catchAsyncError(async(req,res,next)=>{
     const report=await Report.create({
         product,
         reason,
-        description
+        description,
+        from:req.user.id
     })
 
     res.status(201).json({
         success:true,
-        report
+        message:"Report Submit Successfully..."
     })
 })
 
 exports.getReports=catchAsyncError(async(req,res,next)=>{
-    const reports= await Report.find().populate('product')
+    const reports= await Report.find().populate('product from')
+
 
     if (!reports) {
         return next(new ErrorHandling("reports not find",400));
@@ -29,4 +31,18 @@ exports.getReports=catchAsyncError(async(req,res,next)=>{
         success:true,
         reports
     })
+})
+
+exports.deleteReport=catchAsyncError(async(req,res,next)=>{
+    const report= await Report.findById(req.params.id)
+
+    if (!report) {
+        return next(new ErrorHandling("report not found",400))
+    }
+report.remove();
+
+res.status(200).json({
+    success:true,
+    message:"Report deleted SuccessFully"
+})
 })

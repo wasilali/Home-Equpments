@@ -8,6 +8,7 @@ import { getAdminProduct } from '../../actions/productAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllOrder } from '../../actions/orderAction';
 import { getAllUsers } from '../../actions/userAction';
+import { getAllReport } from '../../actions/reportAction';
 const Dashboard = () => {
   const dispatch = useDispatch();
   const {products}=useSelector(state=>state.products);
@@ -15,10 +16,12 @@ const Dashboard = () => {
   const {orders}=useSelector(st=>st.allOrders);
 
   const { error, users } = useSelector((state) => state.allUsers);
+  const { reports } = useSelector((state) => state.report);
 
 
   useEffect(() => {
     dispatch(getAdminProduct());
+    dispatch(getAllReport())
 
     dispatch(getAllOrder())
 
@@ -90,6 +93,10 @@ const Dashboard = () => {
             <Link to="/admin/users">
               <p>Users</p>
               <p>{users&&users.length}</p>
+            </Link>
+            <Link to="/admin/reports">
+              <p>Reports</p>
+              <p>{reports&&reports.length}</p>
             </Link>
           </div>
         </div>

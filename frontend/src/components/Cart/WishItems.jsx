@@ -45,9 +45,9 @@ const WishItems = ({w}) => {
       <div>
         <div className="flex justify-between text-base font-medium text-gray-900">
           <h3>
-            <Link className=' text-white' to={`/product/`+ w.product}>{w.name}</Link>
+            <Link className=' text-red-500 hover:text-[yellow]' to={`/product/`+ w.product}>{w.name}</Link>
           </h3>
-          <p className="ml-4  text-[tomato]">{w.price}</p>
+          <p className="ml-4  text-white">{w.price}</p>
         </div>
       </div>
       <div className="flex flex-1 items-end justify-between text-sm">
@@ -74,7 +74,7 @@ d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.7
         </BootstrapTooltip>
         <BootstrapTooltip title="remove to wish list">
         <IconButton aria-label="delete" color="danger" onClick={handleClick}>
-        <DeleteIcon style={{color:"red"}} />
+        <DeleteIcon style={{color:"white"}} />
         </IconButton>
 
         </BootstrapTooltip>

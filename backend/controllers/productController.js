@@ -184,7 +184,6 @@ exports.createProductReviews= catchAsyncError(async (req,res,next)=>{
         name:req.user.name,
         rating:Number(rating),
         comment,
-        image:req.user.avatar.url
     }
     const product= await Product.findById(productId);
 

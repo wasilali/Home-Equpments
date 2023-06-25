@@ -5,6 +5,7 @@ import { productsReducer,productDetailsReducer, newReviewReducer, newProductRedu
 import { allUserReducer, forgotPassReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
 import { cartReducer, wishReducer } from "./reducers/cartReducer";
 import { allOrderReducer, myOrderReducer, newOrderReducer, orderDetailsReducer, orderReducer } from "./reducers/orderReducer";
+import { deleteReportReducer, reportReducer } from "./reducers/reportReducer";
 
 const reducer=combineReducers({
 products:productsReducer,
@@ -25,8 +26,9 @@ order:orderReducer,
 allUsers:allUserReducer,
 userDetails:userDetailsReducer,
 productReviews:productReviewsReducer,
-review:reviewReducer
-
+review:reviewReducer,
+report:reportReducer,
+deleteReport:deleteReportReducer,
 });
 let initialState= {
     cart:{

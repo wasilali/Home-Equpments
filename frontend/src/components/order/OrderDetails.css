@@ -1,5 +1,5 @@
 .orderDetailsPage {
-    background-color: white;
+    background-color: #333;
   }
   
   .orderDetailsContainer > h1 {
@@ -29,7 +29,7 @@
   
   .orderDetailsContainerBox > div > p {
     font: 400 1vmax "Roboto";
-    color: black;
+    color: white;
   }
   .orderDetailsContainerBox > div > span {
     margin: 0 1vmax;

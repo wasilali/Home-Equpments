@@ -55,7 +55,7 @@ const Home = () => {
  
   </div>
  <h2 id='ss' className='neon featured h2'>Featured Products </h2>
-  <div  className='px-5 xl:px-12 grid lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 grid-cols-1 gap-3'>
+  <div  className=' md:mt-10 px-5 xl:px-12 grid lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 grid-cols-1 gap-3'>
     {products && products.map(product=>(
        <ProductCard product={product}/>
     ))}

@@ -26,8 +26,7 @@ const About = () => {
               Visit Instagram
             </Button>
             <span>
-              This is a sample wesbite Just For practicing
-              for MERN stack 
+              A full stack web site in which you find all type of Home Equipments!
             </span>
           </div>
           <div className="aboutSectionContainer2">

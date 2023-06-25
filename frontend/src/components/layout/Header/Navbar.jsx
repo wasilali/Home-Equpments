@@ -34,6 +34,7 @@ const Navbar = () => {
     navRef.current.classList.toggle("responsive_nav")
   };
   const {isAuthenticated,user}=useSelector(state=>state.user);
+  const {wishItems}=useSelector(state=>state.wish);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [open, setOpen] = useState(false)
 
@@ -49,7 +50,7 @@ const Navbar = () => {
     
     <>
         {/* navbar */}
-        <nav className=" hidden lg:flex justify-between bg-[tomato] text-white w-full">
+        <nav className=" hidden lg:flex justify-between border-b-2 border-[tomato] text-white w-full">
           <div className="px-5 xl:px-12 py-6 flex w-full items-center">
             <Link className="text-3xl font-bold font-heading hover:text-[yellow] robo" to="/">
               Home Equipments
@@ -85,11 +86,13 @@ const Navbar = () => {
             <div className="hidden xl:flex items-center space-x-5">
             <IconButton>
         <BootstrapTooltip title="wish list">
-        <Favorite style={{ color: 'white' }} onClick={()=>{
+        <Favorite style={{ color: 'red' }} onClick={()=>{
           setOpen(!open)
         }} />
+        
         </BootstrapTooltip>
     </IconButton>
+    <span className=' absolute text-[0.8rem] text-[yellow] px-3 -mt-6'>(<span className='text-[tomato] p-[2px]'>{wishItems&&wishItems.length}</span>)</span>
               {/* <Link className="hover:text-[yellow]" to="/search">
               <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +160,7 @@ const Navbar = () => {
    <header className=' lg:hidden'>
     <h3 className='text-xl font-[500] font-heading robo'>Home Equipments</h3>
      
-     <nav ref={navRef}>
+     <nav ref={navRef} className='border-b-2 border-[tomato]'>
        <Link className="hover:text-[yellow]" onClick={showNavbar} to="/">Home</Link>
        <Link className="hover:text-[yellow]" onClick={showNavbar} to="/products">Equipments</Link>
        <Link className="hover:text-[yellow]" onClick={showNavbar} to="/contact">Contact</Link>
@@ -174,6 +177,7 @@ const Navbar = () => {
         }} />
         </BootstrapTooltip>
     </IconButton>
+    <span className=' absolute text-[0.8rem] text-[yellow] -ml-4'>(<span className='text-[tomato] p-[2px]'>{wishItems&&wishItems.length}</span>)</span>
       </div> 
      
      </nav>

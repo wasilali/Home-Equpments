@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
-import {useSelector,useDispatch} from 'react-redux'
-import {getProduct,clearErrors} from '../../actions/productAction'
-import ProductCard from '../layout/ProductCard/ProductCard'
-import Loader from '../layout/loading/Loader'
-import { useEffect } from 'react'
-import './products.css'
-import { useParams } from 'react-router-dom'
-import Pagination from 'react-js-pagination'
-import Typography from '@material-ui/core/Typography'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProduct, clearErrors } from '../../actions/productAction';
+import ProductCard from '../layout/ProductCard/ProductCard';
+import Loader from '../layout/loading/Loader';
+import { useParams } from 'react-router-dom';
+import Pagination from 'react-js-pagination';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import { useAlert } from 'react-alert';
-import MetData from '../layout/MetData'
+import MetData from '../layout/MetData';
 import { makeStyles } from '@material-ui/core/styles';
-import { InputBase, Button } from '@material-ui/core';
+import { InputBase, Button, Select, MenuItem } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import "./products.css"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '80%',
-    margin: '0 auto',
+    width: '90%',
+    background:"#333",
+    margin: '2rem auto 0',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#f0f0f0',
-    padding: theme.spacing(1),
+    padding: theme.spacing(0.5),
     [theme.breakpoints.up('sm')]: {
-      width: '60%',
+      width: '90%',
     },
   },
   input: {
@@ -35,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginLeft: theme.spacing(1),
-    padding: theme.spacing(1.5, 3),
-    backgroundColor: theme.palette.primary.main,
+    padding: theme.spacing(1, 2),
+    backgroundColor: "tomato",
     color: theme.palette.primary.contrastText,
+    
     '&:hover': {
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: "yellow",
     },
   },
   icon: {
@@ -47,15 +48,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const categorys= [
+const categories = [
   "Laptop",
   "Mobiles",
   "Shoes",
   "Watches",
   "Clothes",
   "Camera",
-  "mashine1",
-]
+  "Machine1",
+];
 
 const Products = () => {
   let alert=useAlert();
@@ -93,34 +94,50 @@ const priceHandler=(event,newPrice)=>{
 }
 const count=filteredProductsCount
 const classes = useStyles();
+
+const [keywords,setKeyword]=useState("")
+    const searchSubmitHandler=(e)=>{
+        e.preventDefault();
+        //trim is for deceted space in scearchbar
+        console.log('keywords',keywords);
+        if(keywords.trim()){
+         window.location.replace(`/products/${keywords}`)
+        }else{
+         window.location.replace(`/products`)
+          
+        }
+    }
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        searchSubmitHandler(event);
+      }
+    };
   return (
     <>
-    {loading ? <Loader/> : (
+      {loading ? (
+        <Loader />
+      ) : (
         <>
-        <MetData title="PRODUCTS-Ecommerice"/>
-        <h2 className="productsHeading">Equipments</h2>
-        {/* <div className={classes.root}>
-      <SearchIcon className={classes.icon} />
-      <InputBase
-        className={classes.input}
-        placeholder="Search..."
-        inputProps={{ 'aria-label': 'search' }}
-      />
-      <Button className={classes.button} variant="contained">
-        Search
-      </Button>
-    </div> */}
-<div className="products">
-  
-  {products &&
-    products.map((product) => (
-      <ProductCard key={product._id} product={product} />
-    ))}
-</div>
-
-<div className="filterBox mt-10">
-  <h4 className='margins text-[2rem] text-[tomato]'>Price</h4>
+          <MetData title="PRODUCTS-Ecommerce" />
+          <div className={classes.root}>
+            <SearchIcon className={classes.icon} />
+            <InputBase
+              className={classes.input}
+              placeholder="Search..."
+              inputProps={{ 'aria-label': 'search' }}
+              onChange={(e)=>setKeyword(e.target.value)}
+              value={keywords}
+              onKeyPress={handleKeyDown}
+            />
+            <Button onClick={searchSubmitHandler} className={classes.button} variant="contained">
+              Search
+            </Button>
+          </div>
+          <div className=" p-[30px] xl:px-12 grid lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 grid-cols-1 gap-3">
+            <div className=' flex'>
+            <h4 className='text-[2rem] text-[tomato]'>Price:</h4>
   <Slider
+  style={{width:"70%",marginLeft:"1rem  ",marginTop:".5rem"}}
     value={price}
     onChange={priceHandler}
     valueLabelDisplay="auto"
@@ -128,23 +145,43 @@ const classes = useStyles();
     min={0}
     max={25000}
   />
+            </div>
+<div className=' flex'>
+<h4 className='text-[2rem] text-[tomato]'>Categories:</h4>
 
-  <h4 className='margins text-[2rem] text-[tomato]'>Categories</h4>
-  <ul className="categoryBox">
-    {categorys.map((category) => (
-      <li
-        className="category-link"
-        key={category}
-        onClick={() => setCategory(category)}
-      >
-        {category}
-      </li>
-    ))}
-  </ul>
+<Select
+      value={category}
+      onChange={(e)=>setCategory(e.target.value)}
+      className={classes.selectMenu}
+      style={{ width: '60%', marginLeft: '1rem', marginTop: '.5rem', color: 'white',background:"#333" }}
+      displayEmpty
+      renderValue={(selected) => (selected ? selected : 'Select category')}
+      MenuProps={{
+        classes: { paper: 'select-menu-paper' },
+        anchorOrigin: {
+          vertical: 'bottom',
+          horizontal: 'left',
+        },
+        transformOrigin: {
+          vertical: 'top',
+          horizontal: 'left',
+        },
+        getContentAnchorEl: null,
+      }}
+      IconComponent={() => <span className={classes.icon}>&#9662;</span>}
+    >
+      {categories.map((category) => (
+        <MenuItem key={category} value={category} style={{width:"100%"}}>
+          {category}
+        </MenuItem>
+      ))}
+    </Select>
+</div>
 
-  <fieldset>
-    <h4 className='margins text-[2rem] text-[tomato]' component="legend">Ratings</h4>
+  <fieldset className=' flex'>
+    <h4 className='text-[2rem] text-[tomato]' component="legend">Ratings:</h4>
     <Slider
+      style={{width:"70%",marginLeft:"1rem  ",marginTop:".5rem"}}
       value={ratings}
       onChange={(e, newRating) => {
         setRatings(newRating);
@@ -156,28 +193,28 @@ const classes = useStyles();
     />
   </fieldset>
 </div>
-{resultPerPage < count && (
-  <div className="paginationBox">
-    <Pagination
-      activePage={currentPage}
-      itemsCountPerPage={resultPerPage}
-      totalItemsCount={productsCount}
-      onChange={setCurrentPageNo}
-      nextPageText="Next"
-      prevPageText="Prev"
-      firstPageText="1st"
-      lastPageText="Last"
-      itemClass="page-item"
-      linkClass="page-link"
-      activeClass="pageItemActive"
-      activeLinkClass="pageLinkActive"
-    />
-  </div>
-)}
+          <div className="px-5 xl:px-12 grid lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 grid-cols-1 gap-3 mx-auto">
+            {products &&
+              products.map((product) => <ProductCard key={product._id} product={product} />)}
+          </div>
+         {resultPerPage < count &&  <div className="paginationContainer mt-[3.5rem]">
+            <Pagination
+              activePage={currentPage}
+              itemsCountPerPage={resultPerPage}
+              totalItemsCount={keyword ? filteredProductsCount : productsCount}
+              onChange={setCurrentPageNo}
+              nextPageText="Next"
+              prevPageText="Prev"
+              firstPageText="First"
+              lastPageText="Last"
+              itemClass="page-item"
+              linkClass="page-link"
+            />
+          </div>}
         </>
-    )}
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

@@ -95,6 +95,7 @@ const MyOrders = () => {
       ) : (
         <div className="myOrdersPage">
           <DataGrid
+          style={{border:"2px solid tomato"}}
             rows={rows}
             columns={columns}
             pageSize={10}

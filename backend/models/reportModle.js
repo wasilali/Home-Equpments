@@ -7,6 +7,12 @@ const ProductReportSchema = new mongoose.Schema({
         ref:"Product",
         required:true,
     },
+    from:{
+      type:mongoose.Schema.ObjectId,
+      ref:"User",
+      required:true
+    },
+    
     reason: {
       type: String,
       required: true

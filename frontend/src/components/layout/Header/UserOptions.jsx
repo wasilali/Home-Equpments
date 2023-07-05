@@ -23,7 +23,6 @@ const UserOptions = ({user}) => {
         {icon:<ListAltIcon/>,name:"Orders",func:orders},
         {icon:<PersonIcon/>,name:"Profile",func:account},
         {icon:<ShoppingCartIcon style={{color:cartItems.length?"tomato":"yellow"}} /> ,name:"Cart("+cartItems.length+")",func:shopping},
-        {icon:<FaSearch/>,name:"search",func:searchItems},
         {icon:<ExistToAppIcon/>,name:"Logout",func:logoutUser},
    
     ]
@@ -47,9 +46,7 @@ const UserOptions = ({user}) => {
        dispatch(logout())
        alert.success("logout Successfully")
     }
-    function searchItems() {
-        navigate('/search')
-    }
+    
   return (
     <>
     <Backdrop open={ open }  />

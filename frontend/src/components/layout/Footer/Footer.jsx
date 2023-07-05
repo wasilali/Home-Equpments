@@ -23,9 +23,9 @@ const Footer = () => {
 
       <div className="rightFooter">
         <h4>Follow Us</h4>
-        <a href="">Instagram <AiOutlineInstagram/></a>
-        <a href="">Youtube <AiOutlineYoutube/></a>
-        <a href="">Facebook <AiOutlineFacebook/></a>
+        <a href="" className="flex py-2">Instagram <AiOutlineInstagram style={{marginTop:"0.40rem",marginLeft:"1rem"}}/></a>
+        <a href="" className="flex py-2">Youtube <AiOutlineYoutube style={{marginTop:"0.40rem",marginLeft:"1rem"}}/></a>
+        <a href="" className="flex py-2">Facebook <AiOutlineFacebook style={{marginTop:"0.40rem",marginLeft:"1rem"}}/></a>
       </div>
     </footer>
   );

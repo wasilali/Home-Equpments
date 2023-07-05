@@ -45,7 +45,7 @@ const WishItems = ({w}) => {
       <div>
         <div className="flex justify-between text-base font-medium text-gray-900">
           <h3>
-            <Link className=' text-red-500 hover:text-[yellow]' to={`/product/`+ w.product}>{w.name}</Link>
+            <Link className=' text-[orange] hover:text-[yellow]' to={`/product/`+ w.product}>{w.name}</Link>
           </h3>
           <p className="ml-4  text-white">{w.price}</p>
         </div>

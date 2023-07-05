@@ -62,7 +62,16 @@ const ProductDetails = () => {
   const handleOpen = () => {
     setIsOpen(true);
   };
+const handleRating=(e)=>{
+  const newComment = e.target.value;
 
+  if (newComment.length <= 100) {
+    setComment(newComment);
+  } else {
+    setComment(newComment.slice(0, 100)); // Truncate comment to the first 100 characters
+  }
+
+}
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -265,8 +274,9 @@ const ProductDetails = () => {
                 cols="30"
                 rows="5"
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                onChange={handleRating}
               ></textarea>
+              <span className='flex justify-end'>{comment.length}/100</span>
               <Rating
                 onChange={(e) => setRating(e.target.value)}
                 value={rating}

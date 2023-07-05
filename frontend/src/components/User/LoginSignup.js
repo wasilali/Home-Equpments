@@ -26,10 +26,11 @@ const {error,loading,isAuthenticated}=useSelector(state=>state.user)
     const [user,setUser]=useState({
         name:"",
         email:"",
-        password:""
+        password:"",
+        password2:""
     })
-    
-    const {name,email,password}=user
+    const {name,email,password,password2}=user
+    console.log(password,password,password2);
     const [avatar,setAvatar]=useState()
     const [avatarPreview,setAvatarPreview]=useState(profilepng)
 
@@ -44,6 +45,9 @@ const {error,loading,isAuthenticated}=useSelector(state=>state.user)
 
     const registerSubmit=(e)=>{
         e.preventDefault()
+        if (password===password2) {
+            
+        
         const myForm=new FormData()
         myForm.set("name",name)
         myForm.set("email",email)
@@ -52,8 +56,11 @@ const {error,loading,isAuthenticated}=useSelector(state=>state.user)
         dispatch(register(myForm))
         if(isAuthenticated===true){
             nav("/")
-            
             }
+
+        }else{
+            alert.error("password not match")
+        }
     }
 const registerDataChange=(e)=>{
 if(e.target.name==="avatar"){
@@ -168,6 +175,16 @@ useEffect(()=>{
            required
            name="password"
            value={password}
+           onChange={registerDataChange}
+           />
+          </div>
+          <div>
+             <LockOpenIcon/>
+             <input type="password" 
+           placeholder='Password'
+           required
+           name="password2"
+           value={password2}
            onChange={registerDataChange}
            />
           </div>

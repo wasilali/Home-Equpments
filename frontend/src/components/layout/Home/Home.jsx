@@ -54,7 +54,7 @@ const Home = () => {
 <a id='scroll' href="#ss" className=' flex '>Scroll <span className=' mt-1 ml-2'><BiMouseAlt/></span></a>
  
   </div>
- <h2 id='ss' className='neon featured h2'>Featured Products </h2>
+  <h2 id='ss' className='neon featured h2 italic'> Top Selling Products </h2>
   <div  className=' md:mt-10 px-5 xl:px-12 grid lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 grid-cols-1 gap-3'>
     {products && products.map(product=>(
        <ProductCard product={product}/>

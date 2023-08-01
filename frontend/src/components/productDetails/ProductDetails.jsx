@@ -309,8 +309,8 @@ const handleRating=(e)=>{
             >
               <option value="">Select Reason</option>
               <option value="spam">Spam</option>
-              <option value="inappropriate">Inappropriate Content</option>
-              <option value="harassment">Harassment</option>
+              <option value="Don't match the Quality">Don't match the Quality</option>
+              <option value="harassment">Poor Custoomer Service</option>
               <option value="other">Other</option>
             </select>
           </div>
